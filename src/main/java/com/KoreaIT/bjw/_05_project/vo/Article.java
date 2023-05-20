@@ -20,6 +20,7 @@ public class Article {
 	private int likePoint;
 	private int doCancelLikePoint;
 	private String extra__writer;
+	private int point;
 
 	private boolean actorCanModify;
 	private boolean actorCanDelete;

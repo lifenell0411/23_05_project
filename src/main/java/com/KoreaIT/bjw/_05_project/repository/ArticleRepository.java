@@ -203,4 +203,17 @@ public interface ArticleRepository {
 			""")
 	public int decreaseBadReationPoint(int relId);
 
+	
+	@Select("""
+			<script>
+			SELECT A.*, L.point
+			FROM article AS A
+			INNER JOIN likePoint AS L ON A.memberId = L.memberId
+			WHERE A.memberId = ${loginedMemberId} AND L.point = 1
+			GROUP BY L.point;
+
+			</script>
+			""")
+	public Article getForLikePointArticle(int loginedMemberId);
+
 }

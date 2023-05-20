@@ -47,8 +47,56 @@
         </table>
     </div>
 </div>
-<div class ="like"></div>
+ 
 </section>
+<div class="flex-grow"></div>
+				 
+		 
+			<div class="table-wrapper">
+				<table class="table table-zebra">
+					<colgroup>
+						<col width="140" />
+						<col width="140" />
+						<col width="140" />
+						<col width="140" />
+						<col width="140" />
+						<col width="140" />
+					 
+					</colgroup>
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>날짜</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>조회수</th>
+							<th>찜</th>
+						 
+						</tr>
+					</thead>
+
+					<tbody>
+						<c:forEach var="article" items="${articles }">
+							<tr class="hover">
+								<td>
+									<div class="badge">${article.id}</div>
+								</td>
+								<td>${article.regDate.substring(2,16)}</td>
+								<td>
+									<a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article) }">${article.title}</a>
+								</td>
+								<td>${article.extra__writer}</td>
+								<td>${article.hitCount}</td>
+								<td>${article.point}</td>
+							 
+							</tr>
+						</c:forEach>
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
 
 <style>
 body {

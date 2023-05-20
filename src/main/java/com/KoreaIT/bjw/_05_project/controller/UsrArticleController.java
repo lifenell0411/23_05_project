@@ -92,7 +92,7 @@ public class UsrArticleController {
 		
 		// 요청된 게시물을 가져와서 존재 여부를 확인, 권한 검사
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
-
+ 
 		if (article == null) {
 			return rq.jsHistoryBackOnView(Ut.f("%d번 글은 존재하지 않습니다!", id));
 		}
@@ -203,7 +203,7 @@ public class UsrArticleController {
 	public String showDetail(Model model, int id) {
 
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
-
+		
 		// 좋아요 싫어요 할 수 있는지 권한체크
 		ResultData actorCanMakeReactionRd = reactionPointService.actorCanMakeReaction(rq.getLoginedMemberId(),
 				"article", id);
@@ -283,4 +283,43 @@ public class UsrArticleController {
 		return "usr/article/about";
 	}
 
+	
+	
+	
+	@RequestMapping("/usr/article/likeList")
+	public String showLikeList(Model model, @RequestParam(defaultValue = "1") int boardId,
+			@RequestParam(defaultValue = "title,body") String searchKeywordTypeCode,
+			@RequestParam(defaultValue = "") String searchKeyword, @RequestParam(defaultValue = "1") int page) {
+
+		Board board = boardService.getBoardById(boardId);
+		// 게시판이 존재하지 않을 경우 뒤로가기
+		if (board == null) {
+			return rq.jsHistoryBackOnView("없는 게시판입니다.");
+		}
+
+		// 페이지네이션 기능
+		// 현재 게시글의 총 갯수를 가져옴
+		int articlesCount = articleService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
+		// 한페이지당 최대 10개의 게시글을 보여줌
+		int itemsInAPage = 5;
+		// 전체 페이지 수를 계산하여 저장
+		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
+
+		
+ 
+		List<Article> articles = articleService.getForPrintArticles(boardId, itemsInAPage, page, searchKeywordTypeCode,
+				searchKeyword);
+
+	
+		model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
+		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("board", board);
+		model.addAttribute("boardId", boardId);
+		model.addAttribute("page", page);
+		model.addAttribute("pagesCount", pagesCount);
+		model.addAttribute("articlesCount", articlesCount);
+		model.addAttribute("articles", articles);
+
+		return "usr/article/likeList";
+	}
 }

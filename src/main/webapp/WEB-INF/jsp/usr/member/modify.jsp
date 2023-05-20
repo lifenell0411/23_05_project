@@ -124,7 +124,7 @@
 						<tr>
 							<th></th>
 							<td>
-								<button type="submit" value="수정" />
+								<button class =" custom-btn btn-7" type="submit" value="수정" />
 								수정
 								</button>
 							</td>
@@ -134,7 +134,7 @@
 			</form>
 		</div>
 		<div class="btns">
-			<button class="btn-text-link btn btn-active btn-ghost" type="button" onclick="history.back();">뒤로가기</button>
+			<button class="btns custom-btn btn-7" type="button" onclick="history.back();">뒤로가기</button>
 
 
 		</div>
@@ -162,7 +162,7 @@ table {
 
 /* 테이블 헤더 스타일 */
 th {
-  background-color: #917FB3; /* 배경색 추가 */
+  background-color: #5C5470; /* 배경색 추가 */
   font-weight: bold; /* 굵은 글씨체로 설정 */
   text-align: center; /* 가운데 정렬 */
   padding: 10px; /* 셀 안의 내용과 경계선 사이의 간격을 지정합니다 */
@@ -180,27 +180,85 @@ tr:nth-child(even) {
   background-color: white;
 }
 
-/* 버튼 스타일 */
-button {
-  padding: 10px;
-  background-color: #FDE2F3;
-  color: black;
-  border: 1px solid white;
-  border-radius: 5px;
-  cursor: pointer;
-   
-}
+ 
 
  
 
-/* 버튼 호버 스타일 */
-button:hover {
-  background-color: #FDE2F3;
-}
+  button {
+    margin: 20px;
+    outline: none;
+      border-radius: 10px;
+  }
+  
+  .custom-btn {
+    width: 130px;
+    height: 40px;
+    padding: 10px 25px;
+    border: 2px solid #000;
+    font-family: 'SUITE-Regular', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    text-align: center; /* 가운데 정렬을 위한 속성 추가 */
+        text-decoration: none; /* 밑줄 제거 */
+        border-radius: 10px;
+  }
+  
+  .btn-7 {
+    background: #5C5470;
+    color: #fff;
+    line-height: 42px;
+    padding: 0;
+    border: none;
+    z-index: 1;
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+      border-radius: 10px;
+  }
+  
+  .btn-7:hover {
+    background: transparent;
+    color: #000;
+        text-decoration: none; /* 밑줄 제거 */
+          border-radius: 10px;
+  }
+  
+  .btn-7:before,
+  .btn-7:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    width: 100%;
+    height: 50%;
+    right: 0;
+    z-index: -1;
+    background:  #5C5470;
+    transition: all 0.3s ease;
+      border-radius: 10px;
+  }
+  
+  .btn-7:before {
+    top: 0;
+  }
+  
+  .btn-7:after {
+    bottom: 0;
+  }
+  
+  .btn-7:hover:before,
+  .btn-7:hover:after {
+    height: 0;
+    background-color: #000;
+  }
 table tr:nth-child(odd) {
   background-color: white;
 }
+ .btns {
  
+ left: 138px;}
 
 </style>
 <%@ include file="../common/foot.jspf"%>

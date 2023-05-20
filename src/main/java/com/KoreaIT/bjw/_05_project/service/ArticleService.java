@@ -232,5 +232,12 @@ public class ArticleService {
 	private void deleteArticle(Article article) {
 		articleRepository.deleteArticle(article.getId());
 	}
+
+
+	public Article getForLikePointArticle(int loginedMemberId) {
+		Article article1 = articleRepository.getForLikePointArticle(loginedMemberId);
+		
+		return article1;
+	}
 	
 }
