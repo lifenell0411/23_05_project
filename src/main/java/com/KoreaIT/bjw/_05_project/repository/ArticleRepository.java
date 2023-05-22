@@ -205,15 +205,16 @@ public interface ArticleRepository {
 
 	
 	@Select("""
-			<script>
-			SELECT A.*, L.point
+		    <script>
+		    
+		    SELECT A.*
 			FROM article AS A
 			INNER JOIN likePoint AS L ON A.memberId = L.memberId
 			WHERE A.memberId = ${loginedMemberId} AND L.point = 1
-			GROUP BY L.point;
-
-			</script>
-			""")
-	public Article getForLikePointArticle(int loginedMemberId);
+			GROUP BY A.id;
+		 
+		    </script>
+		    """)
+	public List<Article> getForLikePointArticles(int loginedMemberId);
 
 }

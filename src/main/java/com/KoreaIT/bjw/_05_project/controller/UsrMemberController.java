@@ -197,40 +197,23 @@ public class UsrMemberController {
 	// myPage로 이동
 
 	@RequestMapping("/usr/member/myPage")
-	public String showMyPage(Model model,@RequestParam(defaultValue = "1") int boardId,
-			@RequestParam(defaultValue = "title,body") String searchKeywordTypeCode,
-			@RequestParam(defaultValue = "") String searchKeyword, @RequestParam(defaultValue = "1") int page) {
-		Article article = articleService.getForLikePointArticle(rq.getLoginedMemberId());
-		 
-		Board board = boardService.getBoardById(boardId);
-		// 게시판이 존재하지 않을 경우 뒤로가기
-		if (board == null) {
-			return rq.jsHistoryBackOnView("없는 게시판입니다.");
-		}
-		// 페이지네이션 기능
-		// 현재 게시글의 총 갯수를 가져옴
-		int articlesCount = articleService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
-		// 한페이지당 최대 10개의 게시글을 보여줌
-		int itemsInAPage = 10;
-		// 전체 페이지 수를 계산하여 저장
-		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
+	public String showMyPage(Model model, @RequestParam(defaultValue = "1") int boardId,
+	        @RequestParam(defaultValue = "title,body") String searchKeywordTypeCode,
+	        @RequestParam(defaultValue = "") String searchKeyword, @RequestParam(defaultValue = "1") int page) {
+	    List<Article> articles = articleService.getForLikePointArticles(rq.getLoginedMemberId());
 
-		List<Article> articles = articleService.getForPrintArticles(boardId, itemsInAPage, page, searchKeywordTypeCode,
-				searchKeyword);
+	    Board board = boardService.getBoardById(boardId);
+	    // 게시판이 존재하지 않을 경우 뒤로가기
+	    if (board == null) {
+	        return rq.jsHistoryBackOnView("없는 게시판입니다.");
+	    }
 
-		model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
-		model.addAttribute("searchKeyword", searchKeyword);
-		model.addAttribute("board", board);
-		model.addAttribute("boardId", boardId);
-		model.addAttribute("page", page);
-		model.addAttribute("pagesCount", pagesCount);
-		model.addAttribute("articlesCount", articlesCount);
-		model.addAttribute("articles", articles);
+	    model.addAttribute("board", board);
+	    model.addAttribute("boardId", boardId);
+	    model.addAttribute("articles", articles);
 
-		model.addAttribute("article", article);
-		return "usr/member/myPage";
+	    return "usr/member/myPage";
 	}
-
 	// 회원정보 수정시 한번더 비밀번호를 체크할 수 있도록 checkPw 페이지로 이동
 
 	@RequestMapping("/usr/member/checkPw")

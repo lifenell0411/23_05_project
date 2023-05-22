@@ -233,11 +233,8 @@ public class ArticleService {
 		articleRepository.deleteArticle(article.getId());
 	}
 
-
-	public Article getForLikePointArticle(int loginedMemberId) {
-		Article article1 = articleRepository.getForLikePointArticle(loginedMemberId);
-		
-		return article1;
+	public List<Article> getForLikePointArticles(int loginedMemberId) {
+	    List<Article> articles = articleRepository.getForLikePointArticles(loginedMemberId);
+	    return articles;
 	}
-	
 }

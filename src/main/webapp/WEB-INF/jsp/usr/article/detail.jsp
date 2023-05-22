@@ -83,7 +83,7 @@ input[type="text"], textarea {
 
 
 
-</style>
+ 
 <!-- 변수 생성 -->
 <script>
 	const params = {};
@@ -221,73 +221,42 @@ input[type="text"], textarea {
 	
 	
 	function doLikePoint(articleId) {
-		$.ajax({
-            url: '/usr/likePoint/doLikePoint',
-            type: 'POST',
-            data: {relTypeCode: 'article', relId: articleId},
-            dataType: 'json',
-            success: function(data) {
-                if (data.resultCode.startsWith('S-')) {
-                    var loveButton = $('#loveButton');
-                    var loveCount = $('#loveCount');
-                
-                    if (data.resultCode == 'S-1') {
-                    	loveButton.removeClass('btn-danger').addClass('btn-outline');
-                    	loveCount.text(parseInt(loveCount.text()) - 1);
-                    } 
-                    else if (data.resultCode == 'S-3') {
-                    	loveButton.removeClass('btn-outline').addClass('btn-danger');
-                    	loveCount.text(parseInt(loveCount.text()) + 1);
-                
-                    	
-                    }
-                    else {
-                    	loveButton.removeClass('btn-outline').addClass('btn-danger');
-                        loveCount.text(parseInt(loveCount.text()) + 1);
-                    }
-                  
-                } 
-                else {
-                    alert(data.msg);
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert('오류가 발생했습니다: ' + textStatus);
-            }
-        });
+	    $.ajax({
+	        url: '/usr/likePoint/doLikePoint',
+	        type: 'POST',
+	        data: {relTypeCode: 'article', relId: articleId},
+	        dataType: 'json',
+	        success: function(data) {
+	            if (data.resultCode.startsWith('S-')) {
+	                var loveButton = $('#loveButton');
+	                var loveCount = $('#loveCount');
+
+	                if (data.resultCode == 'S-1') {
+	                    loveButton.removeClass('btn-danger').addClass('btn-outline');
+	                    loveCount.text(parseInt(loveCount.text()) - 1);
+	                } else if (data.resultCode == 'S-3') {
+	                    loveButton.removeClass('btn-outline').addClass('btn-danger');
+	                    loveCount.text(parseInt(loveCount.text()) + 1);
+	                }
+	            } else {
+	                alert(data.msg);
+	            }
+	        },
+	        error: function(jqXHR, textStatus, errorThrown) {
+	            alert('오류가 발생했습니다: ' + textStatus);
+	        }
+	    });
 	}
+
 	
 	
 	
 	
 </script>
-
-<script>
-
-<!-- 댓글 관련 -->
-<script type="text/javascript">
-	let ReplyWrite__submitFormDone = false;
-
-	function ReplyWrite__submitForm(form) {
-		if (ReplyWrite__submitFormDone) {
-			return;
-		}
-		form.body.value = form.body.value.trim();
-
-		if (form.body.value.length < 3) {
-			alert('3글자 이상 입력하세요');
-			form.body.focus();
-			return;
-		}
-
-		ReplyWrite__submitFormDone = true;
-		form.submit();
-
-	}
-</script>
+ 
 
 
-</script>
+ 
 
 
 
@@ -337,7 +306,7 @@ input[type="text"], textarea {
 						</td>
 					</tr>
 					<tr>
-						<c:if test="${actorCanCancelGoodReaction}">
+					 
 						<c:if test="${article.boardId eq 5 || article.boardId eq 6 || article.boardId eq 7 || article.boardId eq 8}">
 							<tr>
 								<th class="table-header">추천</th>
@@ -357,27 +326,31 @@ input[type="text"], textarea {
 										</button>
 									</div>
 						</c:if>
-						</c:if>
+					 
 						<c:if test="${article.boardId eq 1 || article.boardId eq 2 || article.boardId eq 3 || article.boardId eq 4}">
 							<tr>
 								<th class="table-header">찜</th>
 								<td class="table-cell">
 								 
+<c:choose>
+    <c:when test="${actorCanMakeLike}">
+        <div>
+            <button id="loveButton" class="btn btn-outline" type="button" onclick="doLikePoint(${param.id})">
+                ❤
+                <span id="loveCount">${article.likePoint}</span>
+            </button>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <div>
+            <button id="loveButton" class="btn btn-danger" type="button" onclick="doLikePoint(${param.id})">
+                ❤
+                <span id="loveCount">${article.likePoint}</span>
+            </button>
+        </div>
+    </c:otherwise>
+</c:choose>
 
-									<c:if test="${actorCanMakeLike}">
-										<div>
-										 
-												<button id="loveButton" class="btn btn-ghost" " type="button" onclick="doLikePoint(${param.id})">
-													❤
-													<span id="loveCount">${article.likePoint}</span>
-												</button>
-											 
-										</div>
-									</c:if>
-									
-
-								</td>
-							</tr>
 						</c:if>
 					<tr>
 						<th class="table-header">제목</th>
