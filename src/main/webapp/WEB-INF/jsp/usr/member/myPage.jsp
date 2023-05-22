@@ -97,16 +97,21 @@ c
  
 
 <style>
-body {
+ .likeList{
+ font-size:30px;
  
-}
+margin-left:  600px;
+margin-top: 50px;}
+ 
+ 
+ 
 .table-wrapper {
     margin-left: 400px;
     width: 600px;
 }
  
 .table1 {
- margin-top: 200px;
+ margin-top: 50px;
 margin-left: 600px;
     
     }
