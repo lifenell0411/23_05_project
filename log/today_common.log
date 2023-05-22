@@ -30693,3 +30693,119 @@ AND memberId = 2
 2023-05-22 14:33:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
 2023-05-22 14:34:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
 2023-05-22 14:34:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:34:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:34:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:35:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:35:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:35:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:35:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:36:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:36:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:36:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:36:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:37:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:37:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:37:26 [DEBUG] o.s.o.j.s.OpenEntityManagerInViewInterceptor - Opening JPA EntityManager in OpenEntityManagerInViewInterceptor
+2023-05-22 14:37:26 [DEBUG] org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2023-05-22 14:37:26 [DEBUG] org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@760314eb] was not registered for synchronization because synchronization is not active
+2023-05-22 14:37:26 [DEBUG] o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2023-05-22 14:37:26 [DEBUG] o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@678596802 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@26187b0c] will not be managed by Spring
+2023-05-22 14:37:26 [DEBUG] c.K.b._.r.M.getMemberById - ==>  Preparing: SELECT * FROM `member` WHERE id = ?
+2023-05-22 14:37:26 [DEBUG] c.K.b._.r.M.getMemberById - ==> Parameters: 2(Integer)
+2023-05-22 14:37:26 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+101. SELECT *
+FROM `member`
+WHERE id = 2
+ {executed in 1 msec}
+2023-05-22 14:37:26 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|--------|--------|----------|-----|---------|-------------|---------------|----------|--------|
+|id |regdate             |updatedate          |loginid |loginpw |authlevel |name |nickname |cellphonenum |email          |delstatus |deldate |
+|---|--------------------|--------------------|--------|--------|----------|-----|---------|-------------|---------------|----------|--------|
+|2  |2023-05-22 13:31:35 |2023-05-22 13:31:35 |test1   |test1   |3         |회원1  |회원1      |01043214321  |abcd@gmail.com |false     |null    |
+|---|--------------------|--------------------|--------|--------|----------|-----|---------|-------------|---------------|----------|--------|
+
+2023-05-22 14:37:26 [DEBUG] c.K.b._.r.M.getMemberById - <==      Total: 1
+2023-05-22 14:37:26 [DEBUG] org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@760314eb]
+2023-05-22 14:37:26 [DEBUG] org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2023-05-22 14:37:26 [DEBUG] org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4274ec97] was not registered for synchronization because synchronization is not active
+2023-05-22 14:37:26 [DEBUG] o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2023-05-22 14:37:26 [DEBUG] o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@440661274 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@26187b0c] will not be managed by Spring
+2023-05-22 14:37:26 [DEBUG] c.K.b._.r.L.getSumLikePointByMemberId - ==>  Preparing: SELECT IFNULL(SUM(LP.point),0) FROM likePoint AS LP WHERE LP.relTypeCode = ? AND LP.relId = ? AND LP.memberId = ?
+2023-05-22 14:37:26 [DEBUG] c.K.b._.r.L.getSumLikePointByMemberId - ==> Parameters: article(String), 5(Integer), 2(Integer)
+2023-05-22 14:37:26 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+101. SELECT IFNULL(SUM(LP.point),0)
+	FROM likePoint AS LP
+	WHERE LP.relTypeCode = 'article'
+	AND LP.relId = 5
+	AND LP.memberId = 2
+ {executed in 1 msec}
+2023-05-22 14:37:26 [INFO ] jdbc.resultsettable - 
+|------------------------|
+|ifnull(sum(lp.point),0) |
+|------------------------|
+|0                       |
+|------------------------|
+
+2023-05-22 14:37:26 [DEBUG] c.K.b._.r.L.getSumLikePointByMemberId - <==      Total: 1
+2023-05-22 14:37:26 [DEBUG] org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4274ec97]
+2023-05-22 14:37:26 [DEBUG] org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2023-05-22 14:37:26 [DEBUG] org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4ba32d6f] was not registered for synchronization because synchronization is not active
+2023-05-22 14:37:26 [DEBUG] o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2023-05-22 14:37:26 [DEBUG] o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1276187330 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@26187b0c] will not be managed by Spring
+2023-05-22 14:37:26 [DEBUG] c.K.b._.r.L.addLikePoint - ==>  Preparing: INSERT INTO likePoint SET regDate = NOW(), updateDate = NOW(), relTypeCode = ?, relId = ?, memberId = ?, `point` = 1
+2023-05-22 14:37:26 [DEBUG] c.K.b._.r.L.addLikePoint - ==> Parameters: article(String), 5(Integer), 2(Integer)
+2023-05-22 14:37:26 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+101. INSERT INTO likePoint
+	SET regDate = NOW(),
+	updateDate = NOW(),
+	relTypeCode = 'article',
+	relId = 5,
+	memberId = 2,
+	`point` = 1
+ {executed in 3 msec}
+2023-05-22 14:37:26 [DEBUG] c.K.b._.r.L.addLikePoint - <==    Updates: 1
+2023-05-22 14:37:26 [DEBUG] org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4ba32d6f]
+2023-05-22 14:37:26 [DEBUG] org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+2023-05-22 14:37:26 [DEBUG] org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@19e78ec6] was not registered for synchronization because synchronization is not active
+2023-05-22 14:37:26 [DEBUG] o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+2023-05-22 14:37:26 [DEBUG] o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1571035194 wrapping net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@26187b0c] will not be managed by Spring
+2023-05-22 14:37:26 [DEBUG] c.K.b._.r.A.increaseLikePoint - ==>  Preparing: UPDATE article SET likePoint = likePoint + 1 WHERE id = ?
+2023-05-22 14:37:26 [DEBUG] c.K.b._.r.A.increaseLikePoint - ==> Parameters: 5(Integer)
+2023-05-22 14:37:26 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+101. UPDATE article
+	SET likePoint = likePoint + 1
+	WHERE id = 5
+ {executed in 3 msec}
+2023-05-22 14:37:26 [DEBUG] c.K.b._.r.A.increaseLikePoint - <==    Updates: 1
+2023-05-22 14:37:26 [DEBUG] org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@19e78ec6]
+2023-05-22 14:37:26 [DEBUG] o.s.o.j.s.OpenEntityManagerInViewInterceptor - Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
+2023-05-22 14:37:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:37:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:38:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:38:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:38:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:38:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:39:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:39:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:39:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:39:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:40:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:40:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:40:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:40:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:41:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:41:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:41:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:41:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:42:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:42:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:42:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:42:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:43:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:43:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:43:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:43:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:44:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:44:16 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
+2023-05-22 14:44:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-05-22 14:44:46 [DEBUG] com.zaxxer.hikari.pool.HikariPool - HikariPool-9 - Fill pool skipped, pool is at sufficient level.
