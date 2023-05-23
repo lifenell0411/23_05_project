@@ -21,7 +21,7 @@ public class Article {
 	private int doCancelLikePoint;
 	private String extra__writer;
 	private int point;
-
+	private int authLevel;
 	private boolean actorCanModify;
 	private boolean actorCanDelete;
 

@@ -201,17 +201,18 @@ public class UsrMemberController {
 	        @RequestParam(defaultValue = "title,body") String searchKeywordTypeCode,
 	        @RequestParam(defaultValue = "") String searchKeyword, @RequestParam(defaultValue = "1") int page) {
 	    List<Article> articles = articleService.getForLikePointArticles(rq.getLoginedMemberId());
-
+	    List<Article> articles1 = articleService.getForPrintMyArticles(rq.getLoginedMemberId());
 	    Board board = boardService.getBoardById(boardId);
 	    // 게시판이 존재하지 않을 경우 뒤로가기
 	    if (board == null) {
 	        return rq.jsHistoryBackOnView("없는 게시판입니다.");
 	    }
-
+	 
 	    model.addAttribute("board", board);
 	    model.addAttribute("boardId", boardId);
 	    model.addAttribute("articles", articles);
-
+	    model.addAttribute("articles1", articles1);
+	 
 	    return "usr/member/myPage";
 	}
 	// 회원정보 수정시 한번더 비밀번호를 체크할 수 있도록 checkPw 페이지로 이동
@@ -227,7 +228,8 @@ public class UsrMemberController {
 	@RequestMapping("/usr/member/doCheckPw")
 	@ResponseBody
 	public String doCheckPw(String loginPw, String replaceUri) {
-
+		System.out.println("========================================" + loginPw);
+		System.out.println("========================================" + replaceUri);
 		if (Ut.empty(loginPw)) {
 			return rq.jsHistoryBackOnView("비밀번호를 입력해주세요");
 		}
@@ -273,6 +275,8 @@ public class UsrMemberController {
 		ResultData modifyRd = memberService.modify(rq.getLoginedMemberId(), loginPw, name, nickname, cellphoneNum,
 				email);
 
+		
+		
 		return rq.jsReplace(modifyRd.getMsg(), "../member/myPage");
 	}
 

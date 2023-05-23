@@ -44,27 +44,44 @@
 							<th>제목</th>
 							<th>작성자</th>
 							<th>조회수</th>
+						
 							<th>좋아요</th>
 							<th>싫어요</th>
 						</tr>
 					</thead>
 
-					<tbody>
-						<c:forEach var="article" items="${articles }">
-							<tr class="hover">
-								<td>
-									<div class="badge">${article.id}</div>
-								</td>
-								<td>${article.regDate.substring(2,16)}</td>
-								<td>
-									<a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article) }">${article.title}</a>
-								</td>
-								<td>${article.extra__writer}</td>
-								<td>${article.hitCount}</td>
-								<td>${article.goodReactionPoint}</td>
-								<td>${article.badReactionPoint}</td>
-							</tr>
-						</c:forEach>
+				<tbody>
+  <tbody>
+ <c:forEach var="article" items="${articles}">
+    <tr class="hover">
+      <td>
+        <div class="badge">${article.id}</div>
+      </td>
+      <td>${article.regDate.substring(2,16)}</td>
+      <td>
+        <c:choose>
+          <c:when test="${article.boardId eq 5}">
+            <c:choose>
+              <c:when test="${rq.getLoginedMemberId() == article.memberId}">
+                <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
+              </c:when>
+              <c:otherwise>
+                <a class="hover:underline" href="javascript:void(0)" onclick="showAlert()">${article.title}</a>
+              </c:otherwise>
+            </c:choose>
+          </c:when>
+          <c:otherwise>
+            <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
+          </c:otherwise>
+        </c:choose>
+      </td>
+      <td>${article.extra__writer}</td>
+      <td>${article.hitCount}</td>
+      <td>${article.goodReactionPoint}</td>
+      <td>${article.badReactionPoint}</td>
+    </tr>
+  </c:forEach>
+</tbody>
 					</tbody>
 
 				</table>
@@ -105,8 +122,9 @@
 
 <style>
 .container{
-margin-top: 200px;
+margin-top: 300px;
 		color: #2A2438;
+		  font-family: 'SUITE-Regular', sans-serif;
 }
 
  
@@ -196,5 +214,9 @@ margin-top: 200px;
   }
 
 </style>
- 
+ <script>
+ function showAlert() {
+	    alert("게시물을 볼 수 있는 권한이 없습니다.");
+	  }
+</script>
 <%@ include file="../common/foot.jspf"%>

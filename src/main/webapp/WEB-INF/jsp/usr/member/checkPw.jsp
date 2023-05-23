@@ -33,6 +33,15 @@
 
 
 <style>
+
+@font-face {
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
 body {
   overflow: hidden;
 }
@@ -42,6 +51,7 @@ body {
   border: 2px solid #5C5470;
   border-radius: 4px;
   padding: 6px 12px;
+  font-family: 'SUITE-Regular', sans-serif;
 }
 
 .btn-custom:hover{
@@ -60,6 +70,7 @@ color: white;}
       justify-content: center;
       align-items: center;
       height: 100vh;
+      font-family: 'SUITE-Regular', sans-serif;
      
     }
 

@@ -383,7 +383,7 @@ input[type="text"], textarea {
 </section>
 
 <section class="mt-8 text-xl">
-	<div class="container mx-auto px-3">
+	<div class="container  mx-auto px-3">
 		<div class="table-box-type-1">
 			<c:if test="${rq.logined }">
 				<form action="../reply/doWrite" method="POST" onsubmit="ReplyWrite__submitForm(this); return false;">
@@ -397,18 +397,13 @@ input[type="text"], textarea {
 
 						<tbody>
 							<tr>
-								<th>댓글</th>
-								<td>
-									<textarea class="input input-bordered w-full max-w-xs" type="text" name="body" placeholder="내용을 입력해주세요" /></textarea>
-								</td>
-							</tr>
-							<tr>
-								<th></th>
-								<td>
-									<button type="submit" value="작성" />
-									댓글 작성
-									</button>
-								</td>
+							  <th>댓글</th>
+        <td>
+            <textarea class="input input-bordered w-full max-w-xs" type="text" name="body" placeholder="내용을 입력해주세요"></textarea>
+        </td>
+        <td>
+            <button type="submit" class="btn-7">댓글 작성</button>
+        </td>
 							</tr>
 						</tbody>
 
@@ -479,12 +474,14 @@ input[type="text"], textarea {
 
 
 <style>
-  button {
-    margin: 20px;
-    outline: none;
-      border-radius: 10px;
-  }
-  
+
+    .table-box-type-1 textarea.input {
+        width: 100%;
+        max-width: none;
+    }
+ 
+  table,h1{
+    font-family: 'SUITE-Regular', sans-serif;}
   .custom-btn {
     width: 130px;
     height: 40px;
@@ -500,6 +497,7 @@ input[type="text"], textarea {
     text-align: center; /* 가운데 정렬을 위한 속성 추가 */
         text-decoration: none; /* 밑줄 제거 */
         border-radius: 10px;
+          font-family: 'SUITE-Regular', sans-serif;
   }
   
   .btn-7 {
@@ -512,6 +510,7 @@ input[type="text"], textarea {
     -webkit-transition: all 0.3s linear;
     transition: all 0.3s linear;
       border-radius: 10px;
+        font-family: 'SUITE-Regular', sans-serif;
   }
   
   .btn-7:hover {

@@ -2,11 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="MEMBER MYPAGE" />
 <%@ include file="../common/head.jspf"%>
-c
+ <%@ page import="com.KoreaIT.bjw._05_project.util.Ut"%>
 <hr />
 <section class="mt-8 text-xl">
+ <div class ="title">My Page</div>
 	<div class="container">
 		<div class="table-box-type-1" style="max-width: 800px;">
+		
 			<table class="custom-table">
 				<colgroup>
 					<col width="200" />
@@ -40,8 +42,8 @@ c
 					<tr>
 						<th></th>
 						<td>
-							<a href="../member/checkPw?replaceUri=${Ut.getEncodedUri('../member/modify') }" class="btn btn-active btn-ghost">회원정보
-								수정</a>
+						<a href="../member/checkPw?replaceUri=${Ut.getEncodedUri('../member/modify')}" class="btn btn-active btn-ghost">회원정보 수정</a>
+
 						</td>
 					</tr>
 				</tbody>
@@ -94,9 +96,88 @@ c
  
 	</table>
 </div>
+
+
+<div class="flex-grow"></div>
+
+<div class ="likeList">나의 게시글</div>
+<div class="table-wrapper table1">
+	<table class=" table-zebra">
+		<colgroup>
+			<col width="70" />
+			<col width="70" />
+			<col width="70" />
+			<col width="70" />
+			<col width="70" />
+			<col width="70" />
+
+		</colgroup>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>날짜</th>
+				<th>제목</th>
+		 
+
+
+			</tr>
+		</thead>
+
+ 
+		<tbody>
+			<c:forEach var="article" items="${articles1}">
+				<tr class="hover">
+					<td>
+						<div class="badge">${article.id}</div>
+					</td>
+					<td>${article.regDate.substring(2,16)}</td>
+					<td>
+						<a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article) }">${article.title}</a>
+					</td>
+			 
+
+				</tr>
+			</c:forEach>
+		</tbody>
+ 
+	</table>
+</div>
  
 
 <style>
+
+@font-face {
+	font-family: 'SUITE-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+		format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+	.table-wrapper {
+		width: 830px; /* 원하는 가로 길이로 조정하세요 */
+	}
+
+	.table-wrapper table {
+		width: 830px; /* 테이블의 가로 길이 */
+	}
+
+	.table-wrapper td {
+		width: 830px; /* 각 셀의 가로 길이 조정 (원하는 비율로 조정하세요) */
+	}
+.container, .likeList, .table1{
+
+font-family: 'SUITE-Regular', sans-serif;
+
+}
+
+.title {
+ font-size:30px;
+ 
+margin-left:  600px;
+margin-top: 150px;
+ 
+}
  .likeList{
  font-size:30px;
  
@@ -111,7 +192,7 @@ margin-top: 50px;}
 }
  
 .table1 {
- margin-top: 50px;
+ margin-top: 20px;
 margin-left: 600px;
     
     }
@@ -120,7 +201,8 @@ margin-left: 600px;
 	width: 100%;
 	border: none;
 	margin-left: 200px;
-	margin-top: 200px;
+	margin-top: 30px;
+	 
 }
 
 .like {

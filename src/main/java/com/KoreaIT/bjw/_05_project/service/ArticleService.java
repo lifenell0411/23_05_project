@@ -237,4 +237,10 @@ public class ArticleService {
 	    List<Article> articles = articleRepository.getForLikePointArticles(loginedMemberId);
 	    return articles;
 	}
+
+
+	public List<Article> getForPrintMyArticles(int loginedMemberId) {
+		 List<Article> articles1 = articleRepository.getForPrintMyArticles(loginedMemberId);
+		return articles1;
+	}
 }

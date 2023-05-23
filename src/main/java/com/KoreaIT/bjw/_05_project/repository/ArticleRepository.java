@@ -218,5 +218,16 @@ public interface ArticleRepository {
 		    </script>
 		    """)
 	public List<Article> getForLikePointArticles(int loginedMemberId);
+	@Select("""
+		    <script>
+		    
+		  
+			SELECT A.*
+			FROM article AS A
+			WHERE memberId = #{loginedMemberId};
+		
+		    </script>
+		    """)
+	public List<Article> getForPrintMyArticles(int loginedMemberId);
 
 }

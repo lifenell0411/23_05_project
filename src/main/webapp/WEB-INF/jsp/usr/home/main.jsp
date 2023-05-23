@@ -72,7 +72,7 @@ margin-top: 300px;
   width: 100%;
   height: 120%;
   background-size: cover;
-  background-position: 0 0;
+  background-position: -120px 0;
   transition: transform calc(var(--d) * 1.5) var(--e);
   pointer-events: none;
 }
@@ -194,9 +194,7 @@ margin-top: 300px;
 
  </style>
  
- <script>
- 
- </script>
+  
  
 <main class="page-content">
   <div class="card">

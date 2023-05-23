@@ -234,10 +234,20 @@ public class Rq {
 	public String getProfileFallbackImgOnErrorHtml() {
 		return "this.src = '" + getProfileFallbackImgUri() + "'";
 	}
-	
+
 	public String getRemoveProfileImgIfNotExitOnErrorHtmlAttr() {
 		return "$(this).remove()";
 	}
+	
+	public Member getLoggedMember() {
+	    // 로그인한 사용자의 정보를 가져오는 로직
+	    // 예시로 임의의 Member 객체를 반환하도록 작성하였습니다.
+	    Member loggedMember = new Member();
+	 
+	    loggedMember.setAuthLevel(7);
+	    // 필요한 사용자 정보를 설정해주세요.
 
+	    return loggedMember;
+	}
 
 }

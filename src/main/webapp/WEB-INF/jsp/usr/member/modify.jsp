@@ -157,7 +157,7 @@ table {
   max-width: 800px; /* 테이블의 최대 너비를 지정합니다 */
   margin: 0 auto; /* 가운데 정렬 */
   
-  margin-top: 100px;
+  margin-top: 200px;
 }
 
 /* 테이블 헤더 스타일 */
@@ -180,9 +180,11 @@ tr:nth-child(even) {
   background-color: white;
 }
 
+ .container{
+  font-family: 'SUITE-Regular', sans-serif;
  
+ }
 
- 
 
   button {
     margin: 20px;
