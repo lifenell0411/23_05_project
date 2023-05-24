@@ -26,66 +26,112 @@
 					<button class="btn-text-link btn btn-active btn-ghost" type=submit>검색</button>
 				</form>
 			</div>
-			<div class="table-wrapper">
-				<table class="table table-zebra">
-					<colgroup>
-						<col width="140" />
-						<col width="140" />
-						<col width="140" />
-						<col width="140" />
-						<col width="140" />
-						<col width="140" />
-						<col width="140" />
-					</colgroup>
-					<thead>
-						<tr>
-							<th>번호</th>
-							<th>날짜</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>조회수</th>
-						
-							<th>좋아요</th>
-							<th>싫어요</th>
-						</tr>
-					</thead>
+		<div class="table-wrapper">
+    <c:choose>
+        <c:when test="${boardId >= 1 && boardId <= 4}">
+            <!-- 그리드 형식 -->
+    <div class="grid grid-cols-3 gap-4">
+                <c:forEach var="article" items="${articles}">
+                    <div class="grid-item">
+                        <div class="badge">${article.id}</div>
+                        <div>${article.regDate.substring(2, 16)}</div>
+                        <div>
+                            <c:choose>
+                                <c:when test="${article.id == 1}">
+                                    <img src="https://images.mypetlife.co.kr/content/uploads/2023/01/03112051/AdobeStock_156531656-1024x704.jpeg" alt="Image 1">
+                                </c:when>
+                                <c:when test="${article.id == 2}">
+                                    <img src="https://images.mypetlife.co.kr/content/uploads/2023/01/03112051/AdobeStock_156531656-1024x704.jpeg" alt="Image 2">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="https://images.mypetlife.co.kr/content/uploads/2023/01/03112051/AdobeStock_156531656-1024x704.jpeg" alt="Default Image">
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div>
+                            <c:choose>
+                                <c:when test="${article.boardId eq 5}">
+                                    <c:choose>
+                                        <c:when test="${rq.getLoginedMemberId() == article.memberId}">
+                                            <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a class="hover:underline" href="javascript:void(0)" onclick="showAlert()">${article.title}</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div>${article.extra__writer}</div>
+                        <div>${article.hitCount}</div>
+                        <div>${article.goodReactionPoint}</div>
+                        <div>${article.badReactionPoint}</div>
+                    </div>
+                </c:forEach>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <!-- 리스트 형식 -->
+            <table class="table table-zebra">
+                <colgroup>
+                    <col width="140" />
+                    <col width="140" />
+                    <col width="140" />
+                    <col width="140" />
+                    <col width="140" />
+                    <col width="140" />
+                    <col width="140" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>날짜</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>조회수</th>
+                        <th>좋아요</th>
+                        <th>싫어요</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="article" items="${articles}">
+                        <tr class="hover">
+                            <td>
+                                <div class="badge">${article.id}</div>
+                            </td>
+                            <td>${article.regDate.substring(2,16)}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${article.boardId eq 5}">
+                                        <c:choose>
+                                            <c:when test="${rq.getLoginedMemberId() == article.memberId}">
+                                                <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a class="hover:underline" href="javascript:void(0)" onclick="showAlert()">${article.title}</a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>${article.extra__writer}</td>
+                            <td>${article.hitCount}</td>
+                            <td>${article.goodReactionPoint}</td>
+                            <td>${article.badReactionPoint}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </c:otherwise>
+    </c:choose>
+</div>
 
-				<tbody>
-  <tbody>
- <c:forEach var="article" items="${articles}">
-    <tr class="hover">
-      <td>
-        <div class="badge">${article.id}</div>
-      </td>
-      <td>${article.regDate.substring(2,16)}</td>
-      <td>
-        <c:choose>
-          <c:when test="${article.boardId eq 5}">
-            <c:choose>
-              <c:when test="${rq.getLoginedMemberId() == article.memberId}">
-                <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
-              </c:when>
-              <c:otherwise>
-                <a class="hover:underline" href="javascript:void(0)" onclick="showAlert()">${article.title}</a>
-              </c:otherwise>
-            </c:choose>
-          </c:when>
-          <c:otherwise>
-            <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
-          </c:otherwise>
-        </c:choose>
-      </td>
-      <td>${article.extra__writer}</td>
-      <td>${article.hitCount}</td>
-      <td>${article.goodReactionPoint}</td>
-      <td>${article.badReactionPoint}</td>
-    </tr>
-  </c:forEach>
-</tbody>
-					</tbody>
-
-				</table>
-			</div>
 		</div>
 	</div>
 </section>
@@ -112,12 +158,13 @@
 				</c:if>
 			</div>
 		</div>
-
+ 
 	
  
 		<a class="custom-btn btn-7" href="../article/write">글쓰기</a>
  
  
+
 
 <style>
 .container{
