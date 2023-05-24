@@ -29,49 +29,41 @@
 		<div class="table-wrapper">
     <c:choose>
         <c:when test="${boardId >= 1 && boardId <= 4}">
-            <!-- 그리드 형식 -->
-    <div class="grid grid-cols-3 gap-4">
-                <c:forEach var="article" items="${articles}">
-                    <div class="grid-item">
-                        <div class="badge">${article.id}</div>
-                        <div>${article.regDate.substring(2, 16)}</div>
-                        <div>
+       <!-- 그리드 형식 -->
+<div class="grid grid-cols-3 gap-4">
+    <c:forEach var="article" items="${articles}">
+        <div class="grid-item">
+            <div class="badge">${article.id}</div>
+     <div class="image-preview">
+    <img src="${rq.getImgUri(article.id)}" onerror="${rq.profileFallbackImgOnErrorHtml}" alt="" />
+</div>
+            <div class="back">
+                <div>
+                    <c:choose>
+                        <c:when test="${article.boardId eq 5}">
                             <c:choose>
-                                <c:when test="${article.id == 1}">
-                                    <img src="https://images.mypetlife.co.kr/content/uploads/2023/01/03112051/AdobeStock_156531656-1024x704.jpeg" alt="Image 1">
-                                </c:when>
-                                <c:when test="${article.id == 2}">
-                                    <img src="https://images.mypetlife.co.kr/content/uploads/2023/01/03112051/AdobeStock_156531656-1024x704.jpeg" alt="Image 2">
-                                </c:when>
-                                <c:otherwise>
-                                    <img src="https://images.mypetlife.co.kr/content/uploads/2023/01/03112051/AdobeStock_156531656-1024x704.jpeg" alt="Default Image">
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                        <div>
-                            <c:choose>
-                                <c:when test="${article.boardId eq 5}">
-                                    <c:choose>
-                                        <c:when test="${rq.getLoginedMemberId() == article.memberId}">
-                                            <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <a class="hover:underline" href="javascript:void(0)" onclick="showAlert()">${article.title}</a>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:when>
-                                <c:otherwise>
+                                <c:when test="${rq.getLoginedMemberId() == article.memberId}">
                                     <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="hover:underline" href="javascript:void(0)" onclick="showAlert()">${article.title}</a>
                                 </c:otherwise>
                             </c:choose>
-                        </div>
-                        <div>${article.extra__writer}</div>
-                        <div>${article.hitCount}</div>
-                        <div>${article.goodReactionPoint}</div>
-                        <div>${article.badReactionPoint}</div>
-                    </div>
-                </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+                <div>작성자: ${article.extra__writer}</div>
+                <div>조회수: ${article.hitCount}</div>
+                <div>찜: ${article.likePoint}</div>
+                <div>작성날짜: ${article.regDate.substring(2, 16)}</div>
             </div>
+        </div>
+    </c:forEach>
+</div>
+
         </c:when>
         <c:otherwise>
             <!-- 리스트 형식 -->
@@ -257,12 +249,24 @@ margin-top: 300px;
   .btn-7:hover:after {
     height: 0;
     background-color: #000;
+ 
+ 
   }
 
+     .image-preview img {
+        width: 100%;
+        height: 400px; /* 원하는 높이로 설정하세요 */
+        object-fit: cover;
+    }
+
+ .back {
+		background-color: rgba(255, 255, 255, 0.5); 
+ }
 </style>
  <script>
  function showAlert() {
 	    alert("게시물을 볼 수 있는 권한이 없습니다.");
 	  }
+ 
 </script>
 <%@ include file="../common/foot.jspf"%>
