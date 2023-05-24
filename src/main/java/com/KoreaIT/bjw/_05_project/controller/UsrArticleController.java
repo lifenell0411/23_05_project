@@ -165,37 +165,50 @@ public class UsrArticleController {
 	@RequestMapping("/usr/article/doWrite")
 	@ResponseBody
 	public String doWrite(int boardId, String title, String body, String replaceUri,
-			MultipartRequest multipartRequest) {
+	                      MultipartRequest multipartRequest) {
 
-		// 제목 및 내용 입력하지 않을 시 게시글 작성 불가
-		if (Ut.empty(title)) {
-			return rq.jsHistoryBack("F-1", "제목을 입력해주세요");
-		}
-		if (Ut.empty(body)) {
-			return rq.jsHistoryBack("F-2", "내용을 입력해주세요");
-		}
+	    // 회원 등급에 따른 게시물 작성 권한 검사
+	    int authLevel = rq.getLoginedMember().getAuthLevel();
+	    boolean isAuthLevelAllowed = false;
+	    
+	    if (authLevel >= 7 && (boardId == 1 || boardId == 2 || boardId == 3 || boardId == 4)) {
+	        isAuthLevelAllowed = true;
+	    } else if (authLevel >= 3 && (boardId == 5 || boardId == 6 || boardId == 7 || boardId == 8)) {
+	        isAuthLevelAllowed = true;
+	    }
+	    
+	    if (!isAuthLevelAllowed) {
+	        return rq.jsHistoryBack("F-3", "게시물 작성 권한이 없습니다");
+	    }
 
-		ResultData<Integer> writeArticleRd = articleService.writeArticle(rq.getLoginedMemberId(), boardId, title, body);
+	    // 제목 및 내용 입력하지 않을 시 게시글 작성 불가
+	    if (Ut.empty(title)) {
+	        return rq.jsHistoryBack("F-1", "제목을 입력해주세요");
+	    }
+	    if (Ut.empty(body)) {
+	        return rq.jsHistoryBack("F-2", "내용을 입력해주세요");
+	    }
 
-		int id = (int) writeArticleRd.getData1();
+	    ResultData<Integer> writeArticleRd = articleService.writeArticle(rq.getLoginedMemberId(), boardId, title, body);
 
-		if (Ut.empty(replaceUri)) {
-			replaceUri = Ut.f("../article/detail?id=%d", id);
-		}
+	    int id = writeArticleRd.getData1();
 
-		// 첨부파일 업로드기능
+	    if (Ut.empty(replaceUri)) {
+	        replaceUri = Ut.f("../article/detail?id=%d", id);
+	    }
 
-		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+	    // 첨부파일 업로드 기능
+	    Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 
-		for (String fileInputName : fileMap.keySet()) {
-			MultipartFile multipartFile = fileMap.get(fileInputName);
+	    for (String fileInputName : fileMap.keySet()) {
+	        MultipartFile multipartFile = fileMap.get(fileInputName);
 
-			if (multipartFile.isEmpty() == false) {
-				genFileService.save(multipartFile, id);
-			}
-		}
+	        if (!multipartFile.isEmpty()) {
+	            genFileService.save(multipartFile, id);
+	        }
+	    }
 
-		return rq.jsReplace(Ut.f("%d번 글이 생성되었습니다", id), replaceUri);
+	    return rq.jsReplace(Ut.f("%d번 글이 생성되었습니다", id), replaceUri);
 	}
 
 	// 게시글 상세페이지 보기

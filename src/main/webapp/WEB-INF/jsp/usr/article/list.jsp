@@ -112,13 +112,12 @@
 				</c:if>
 			</div>
 		</div>
-	</div>
+
 	
  
 		<a class="custom-btn btn-7" href="../article/write">글쓰기</a>
  
-</section>
-
+ 
 
 <style>
 .container{
