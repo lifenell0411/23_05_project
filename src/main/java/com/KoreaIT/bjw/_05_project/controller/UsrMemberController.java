@@ -199,22 +199,51 @@ public class UsrMemberController {
 	@RequestMapping("/usr/member/myPage")
 	public String showMyPage(Model model, @RequestParam(defaultValue = "1") int boardId,
 	        @RequestParam(defaultValue = "title,body") String searchKeywordTypeCode,
-	        @RequestParam(defaultValue = "") String searchKeyword, @RequestParam(defaultValue = "1") int page) {
-	    List<Article> articles = articleService.getForLikePointArticles(rq.getLoginedMemberId());
-	    List<Article> articles1 = articleService.getForPrintMyArticles(rq.getLoginedMemberId());
+	        @RequestParam(defaultValue = "") String searchKeyword, @RequestParam(defaultValue = "1") int likePage,
+	        @RequestParam(defaultValue = "1") int myPage) {
+	    List<Article> likeArticles = articleService.getForLikePointArticles(rq.getLoginedMemberId());
+	    List<Article> myArticles = articleService.getForPrintMyArticles(rq.getLoginedMemberId());
 	    Board board = boardService.getBoardById(boardId);
 	    // 게시판이 존재하지 않을 경우 뒤로가기
 	    if (board == null) {
 	        return rq.jsHistoryBackOnView("없는 게시판입니다.");
 	    }
-	 
+
+	 // 페이지네이션 기능
+	    int likeArticlesCount = likeArticles.size(); // 찜한 게시글 총 수
+	    int myArticlesCount = myArticles.size(); // 나의 게시글 총 수
+	    int likeItemsInAPage = 5; // 찜한 게시글 한 페이지에 보여줄 게시글 수
+	    int myItemsInAPage = 5; // 나의 게시글 한 페이지에 보여줄 게시글 수
+	    int likePagesCount = (int) Math.ceil(likeArticlesCount / (double) likeItemsInAPage); // 찜한 게시글 전체 페이지 수
+	    int myPagesCount = (int) Math.ceil(myArticlesCount / (double) myItemsInAPage); // 나의 게시글 전체 페이지 수
+
+	    // 현재 페이지의 찜한 게시글 리스트를 가져옴
+	    int likeStartIndex = (likePage - 1) * likeItemsInAPage;
+	    int likeEndIndex = Math.min(likeStartIndex + likeItemsInAPage, likeArticlesCount);
+	    List<Article> paginatedLikeArticles = likeArticles.subList(likeStartIndex, likeEndIndex);
+
+	    // 현재 페이지의 나의 게시글 리스트를 가져옴
+	    int myStartIndex = (myPage - 1) * myItemsInAPage;
+	    int myEndIndex = Math.min(myStartIndex + myItemsInAPage, myArticlesCount);
+	    List<Article> paginatedMyArticles = myArticles.subList(myStartIndex, myEndIndex);
+
 	    model.addAttribute("board", board);
 	    model.addAttribute("boardId", boardId);
-	    model.addAttribute("articles", articles);
-	    model.addAttribute("articles1", articles1);
-	 
+	    model.addAttribute("likeArticles", paginatedLikeArticles);
+	    model.addAttribute("likePage", likePage);
+	    model.addAttribute("likePagesCount", likePagesCount);
+	    model.addAttribute("myArticles", paginatedMyArticles);
+	    model.addAttribute("myPage", myPage);
+	    model.addAttribute("myPagesCount", myPagesCount);
+
 	    return "usr/member/myPage";
+
+
+
+	 
 	}
+
+
 	// 회원정보 수정시 한번더 비밀번호를 체크할 수 있도록 checkPw 페이지로 이동
 
 	@RequestMapping("/usr/member/checkPw")

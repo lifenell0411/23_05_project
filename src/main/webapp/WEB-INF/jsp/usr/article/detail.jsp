@@ -396,6 +396,7 @@ input[type="text"], textarea {
 						</colgroup>
 
 						<tbody>
+						 
 							<tr>
 							  <th>댓글</th>
         <td>
@@ -410,9 +411,11 @@ input[type="text"], textarea {
 					</table>
 				</form>
 			</c:if>
+			
 			<c:if test="${rq.notLogined }">
 				<a class="btn-text-link btn btn-active btn-ghost" href="${rq.loginUri }">로그인</a> 하고 해라
 			</c:if>
+			
 		</div>
 
 	</div>
@@ -466,10 +469,12 @@ input[type="text"], textarea {
 						</td>
 					</tr>
 				</c:forEach>
+			
 			</tbody>
 
 		</table>
 	</div>
+	
 </section>
 
 

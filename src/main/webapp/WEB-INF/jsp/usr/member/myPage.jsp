@@ -54,95 +54,112 @@
 </section>
 <div class="flex-grow"></div>
 
-<div class ="likeList">찜한 게시글</div>
+<div class="likeList">찜한 게시글</div>
 <div class="table-wrapper table1">
-	<table class=" table-zebra">
-		<colgroup>
-			<col width="70" />
-			<col width="70" />
-			<col width="70" />
-			<col width="70" />
-			<col width="70" />
-			<col width="70" />
+    <table class="table-zebra">
+        <colgroup>
+            <col width="70" />
+            <col width="70" />
+            <col width="70" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>날짜</th>
+                <th>제목</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="article" items="${likeArticles}">
+                <tr class="hover">
+                    <td>
+                        <div class="badge">${article.id}</div>
+                    </td>
+                    <td>${article.regDate.substring(2, 16)}</td>
+                    <td>
+                        <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</div>
+<div class="pagination flex justify-center mt-3">
+    <div class="btn-group">
+        <c:set var="paginationLen" value="4" />
+        <c:set var="startPage" value="${likePage - paginationLen >= 1 ? likePage - paginationLen : 1}" />
+        <c:set var="endPage" value="${likePage + paginationLen <= likePagesCount ? likePage + paginationLen : likePagesCount}" />
 
-		</colgroup>
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>날짜</th>
-				<th>제목</th>
-		 
+        <c:if test="${startPage > 1}">
+            <a class="btn" href="?boardId=${boardId}&likePage=1">1</a>
+            <button class="btn btn-disabled">...</button>
+        </c:if>
 
+        <c:forEach begin="${startPage}" end="${endPage}" var="pageNum">
+            <a class="btn ${likePage == pageNum ? 'btn btn-secondary' : ''}" href="?boardId=${boardId}&likePage=${pageNum}">${pageNum}</a>
+        </c:forEach>
 
-			</tr>
-		</thead>
-
- 
-		<tbody>
-			<c:forEach var="article" items="${articles}">
-				<tr class="hover">
-					<td>
-						<div class="badge">${article.id}</div>
-					</td>
-					<td>${article.regDate.substring(2,16)}</td>
-					<td>
-						<a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article) }">${article.title}</a>
-					</td>
-			 
-
-				</tr>
-			</c:forEach>
-		</tbody>
- 
-	</table>
+        <c:if test="${endPage < likePagesCount}">
+            <button class="btn btn-disabled">...</button>
+            <a class="btn" href="?boardId=${boardId}&likePage=${likePagesCount}">${likePagesCount}</a>
+        </c:if>
+    </div>
 </div>
 
 
 <div class="flex-grow"></div>
 
-<div class ="likeList">나의 게시글</div>
+<div class="likeList">나의 게시글</div>
 <div class="table-wrapper table1">
-	<table class=" table-zebra">
-		<colgroup>
-			<col width="70" />
-			<col width="70" />
-			<col width="70" />
-			<col width="70" />
-			<col width="70" />
-			<col width="70" />
-
-		</colgroup>
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>날짜</th>
-				<th>제목</th>
-		 
-
-
-			</tr>
-		</thead>
-
- 
-		<tbody>
-			<c:forEach var="article" items="${articles1}">
-				<tr class="hover">
-					<td>
-						<div class="badge">${article.id}</div>
-					</td>
-					<td>${article.regDate.substring(2,16)}</td>
-					<td>
-						<a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article) }">${article.title}</a>
-					</td>
-			 
-
-				</tr>
-			</c:forEach>
-		</tbody>
- 
-	</table>
+    <table class="table-zebra">
+        <colgroup>
+            <col width="70" />
+            <col width="70" />
+            <col width="70" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>날짜</th>
+                <th>제목</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="article" items="${myArticles}">
+                <tr class="hover">
+                    <td>
+                        <div class="badge">${article.id}</div>
+                    </td>
+                    <td>${article.regDate.substring(2, 16)}</td>
+                    <td>
+                        <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
 </div>
- 
+<div class="pagination flex justify-center mt-3">
+    <div class="btn-group">
+        <c:set var="paginationLen" value="4" />
+        <c:set var="startPage" value="${myPage - paginationLen >= 1 ? myPage - paginationLen : 1}" />
+        <c:set var="endPage" value="${myPage + paginationLen <= myPagesCount ? myPage + paginationLen : myPagesCount}" />
+
+        <c:if test="${startPage > 1}">
+            <a class="btn" href="?boardId=${boardId}&myPage=1">1</a>
+            <button class="btn btn-disabled">...</button>
+        </c:if>
+
+        <c:forEach begin="${startPage}" end="${endPage}" var="pageNum">
+            <a class="btn ${myPage == pageNum ? 'btn btn-secondary' : ''}" href="?boardId=${boardId}&myPage=${pageNum}">${pageNum}</a>
+        </c:forEach>
+
+        <c:if test="${endPage < myPagesCount}">
+            <button class="btn btn-disabled">...</button>
+            <a class="btn" href="?boardId=${boardId}&myPage=${myPagesCount}">${myPagesCount}</a>
+        </c:if>
+    </div>
+</div>
 
 <style>
 
