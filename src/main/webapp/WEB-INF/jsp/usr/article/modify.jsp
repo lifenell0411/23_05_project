@@ -68,6 +68,24 @@
 							<th>작성자</th>
 							<td>${article.extra__writer }</td>
 						</tr>
+								<th>게시판</th>
+						
+						<td>
+								<select class="select select-ghost w-full max-w-xs" name="boardId">
+									<c:if test="${rq.loginedMember.authLevel >= 7}">
+										<option value="1">레터링</option>
+										<option value="2">미니타투</option>
+										<option value="3">블랙워크</option>
+										<option value="4">ETC</option>
+									</c:if>
+									<c:if test="${rq.loginedMember.authLevel >= 3}">
+										<option value="5">타투문의</option>
+										<option value="6">자유</option>
+										<option value="7">QNA</option>
+										<option value="8">타투후기</option>
+									</c:if>
+								</select>
+							</td>
 						<tr>
 							<th>제목</th>
 							<td>
@@ -88,9 +106,7 @@
 						<tr>
 							<th></th>
 							<td>
-								<button type="submit" value="수정" />
-								수정
-								</button>
+									<button class="custom-btn btn-7" type="submit">수정</button>
 							</td>
 						</tr>
 					</tbody>
@@ -99,17 +115,90 @@
 			</form>
 		</div>
 		<div class="btns">
-			<button class="btn-text-link btn btn-active btn-ghost" type="button" onclick="history.back();">뒤로가기</button>
+		<button class="custom-btn btn-7" type="button" onclick="history.back();">뒤로가기</button>
 
-			<c:if test="${article.actorCanModify }">
-				<a class="btn-text-link btn btn-active btn-ghost" href="../article/modify?id=${article.id }">수정</a>
-			</c:if>
-			<c:if test="${article.actorCanDelete }">
-				<a class="btn-text-link btn btn-active btn-ghost" onclick="if(confirm('정말 삭제하시겠습니까?')==false) return false;"
-					href="../article/doDelete?id=${article.id }">삭제</a>
-			</c:if>
-		</div>
 	</div>
 </section>
+
+<style>
+
+.container {
+margin-top: 200px;
+font-family: 'SUITE-Regular', sans-serif;}
+
+.btns {
+	margin-top: 50px;
+	margin-left: 1000px;
+}
+
+button {
+	margin: 20px;
+	outline: none;
+	border-radius: 10px;
+}
+
+.custom-btn {
+	width: 130px;
+	height: 40px;
+	padding: 10px 25px;
+	border: 2px solid #000;
+	font-family: 'SUITE-Regular', sans-serif;
+	font-weight: 500;
+	background: transparent;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+	text-align: center; /* 가운데 정렬을 위한 속성 추가 */
+	text-decoration: none; /* 밑줄 제거 */
+	border-radius: 10px;
+}
+
+.btn-7 {
+	background: #5C5470;
+	color: #fff;
+	line-height: 42px;
+	padding: 0;
+	border: none;
+	z-index: 1;
+	-webkit-transition: all 0.3s linear;
+	transition: all 0.3s linear;
+	border-radius: 10px;
+}
+
+.btn-7:hover {
+	background: transparent;
+	color: #000;
+	text-decoration: none; /* 밑줄 제거 */
+	border-radius: 10px;
+}
+
+.btn-7:before, .btn-7:after {
+	position: absolute;
+	content: "";
+	left: 0;
+	width: 100%;
+	height: 50%;
+	right: 0;
+	z-index: -1;
+	background: #5C5470;
+	transition: all 0.3s ease;
+	border-radius: 10px;
+}
+
+.btn-7:before {
+	top: 0;
+}
+
+.btn-7:after {
+	bottom: 0;
+}
+
+.btn-7:hover:before, .btn-7:hover:after {
+	height: 0;
+	background-color: #000;
+}
+
+</style>
 
 <%@ include file="../common/foot.jspf"%>

@@ -249,5 +249,7 @@ public class Rq {
 
 	    return loggedMember;
 	}
+	
+	
 
 }

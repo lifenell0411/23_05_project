@@ -46,6 +46,7 @@
 				<nav class="menu-box-1">
 					<div class="bg"></div>
 					<ul class="height-100p flex">
+					
 						<li>
 							<a href="/usr/home/main" class="flex flex-ai-c height-100p">HOME</a>
 
@@ -399,12 +400,17 @@ font-size: 20px;
 
 }
  
+ .logo {
+ font-weight: bold;
+     font-family: 'SUITE-Regular', sans-serif;}
  a:hover {
  
          text-decoration: none; /* 밑줄 제거 */
          color : inherit;
          
          }
+         
+         
 
 </style>
 

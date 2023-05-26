@@ -159,6 +159,7 @@ form.addEventListener('submit', (e) => {
 	border: 2px solid #5C5470;
 	padding: 40px 40px;
 	border-radius: 10px;
+	font-family: 'SUITE-Regular', sans-serif;
 }
 
 .btns {

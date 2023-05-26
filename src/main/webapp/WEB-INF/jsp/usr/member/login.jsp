@@ -8,7 +8,7 @@
 	<div class="login-box">
 		<h2>Login</h2>
 		<form action="../member/doLogin" method="POST">
-			<input type="hidden" name="afterLoginUri" value="${param.afterLoginUri }" />
+			<input type="hidden" name="afterLoginUri" value="${param.afterLoginUri}" />
 			<div class="user-box">
 				<input type="text" name="loginId" required="" autocomplete="off">
 				<label>LoginId</label>
@@ -18,49 +18,56 @@
 				<label>Password</label>
 			</div>
 			<button type="submit">Login</button>
+				<div class="button-group">
+				<button class="btn btn-active btn-ghost" onclick="location.href='${rq.findLoginIdUri}'">아이디 찾기</button>
+				<button class="btn btn-ghost btn-active" onclick="location.href='${rq.findLoginPwUri}'">비밀번호 찾기</button>
+			</div>
 		</form>
 	</div>
 </div>
- 
- 
+
+
 
 
 
 <style>
 
- 
+.button-group {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	margin-top: 10px;
+}
 
 body {
-  height: 100%;
-  margin: 0;
-  font-family: "Fira Sans", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-   
-  background-attachment: fixed;
+	height: 100%;
+	margin: 0;
+	font-family: "Fira Sans", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-attachment: fixed;
 }
 
 .container {
-  max-width: 960px;
-  margin: auto;
-  position: relative;
-  top: calc(50vh - 150px); /* 로그인박스 높이의 절반인 150px만큼 상위 요소 중앙 위치에서 아래로 이동 */
+	max-width: 960px;
+	margin: auto;
+	position: relative;
+	top: calc(50vh - 150px);
+	/* 로그인박스 높이의 절반인 150px만큼 상위 요소 중앙 위치에서 아래로 이동 */
 }
 
 .login-box {
-
-  width: 400px;
-  padding: 40px;
-  background: rgba(0, 0, 0, 0.5);
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-  position: relative;
-  margin: 0 auto; /* 로그인박스 가운데 정렬 */
-  margin-top: 100px;
-  transform: translate(-10%, -30%);
+	width: 400px;
+	padding: 40px;
+	background: rgba(0, 0, 0, 0.5);
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+	border-radius: 10px;
+	position: relative;
+	margin: 0 auto; /* 로그인박스 가운데 정렬 */
+	margin-top: 100px;
+	transform: translate(-10%, -30%);
 }
-
 
 .login-box h2 {
 	margin: 0 0 30px;
@@ -128,10 +135,14 @@ body {
 	color: #fff;
 	box-shadow: 0 0 5px #DBD8E3, 0 0 25px #DBD8E3, 0 0 50px #DBD8E3, 0 0
 		100px #DBD8E3;
+
 }
 
- 
- 
+.button-group button {
+	padding: 5px 5px; /* 버튼의 내부 여백 조정 */
+	font-size: 1px; /* 버튼의 폰트 크기 조정 */
+	bottom: 98px;
+	left: 10px;
 }
 </style>
 <%@ include file="../common/foot.jspf"%>

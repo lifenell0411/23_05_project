@@ -123,7 +123,7 @@ margin-top: 300px;
 }
 
 .copy {
-  font-family: var(--font-serif);
+font-family: 'SUITE-Regular', sans-serif;
   font-size: 1.125rem;
   font-style: italic;
   line-height: 1.35;
@@ -200,29 +200,29 @@ margin-top: 300px;
   <div class="card">
     <div class="content">
       <h2 class="title">LETTERRING</h2>
-      <p class="copy">Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p>
-      <a href="/usr/article/list?boardId=1" class="btn">View Trips</a>
+      <p class="copy">그림 없이 글자로만 이루어진 타투 장르</p>
+      <a href="/usr/article/list?boardId=1" class="btn">Go</a>
     </div>
   </div>
   <div class="card">
     <div class="content">
       <h2 class="title">MINITATTOO</h2>
-      <p class="copy">Plan your next beach trip with these fabulous destinations</p>
-      <a href="/usr/article/list?boardId=2" class="btn">View Trips</a>
+      <p class="copy">타투 초심자가 시작하기 좋은 미니타투</p>
+      <a href="/usr/article/list?boardId=2" class="btn">Go</a>
     </div>
   </div>
   <div class="card">
     <div class="content">
       <h2 class="title">BLACKWORK</h2>
-      <p class="copy">It's the desert you've always dreamed of</p>
-      <a href="/usr/article/list?boardId=3" class="btn">Book Now</a>
+      <p class="copy">블랙(검은색)을 단일로 사용하는 모든 종류의 타투</p>
+      <a href="/usr/article/list?boardId=3" class="btn">Go</a>
     </div>
   </div>
   <div class="card">
     <div class="content">
       <h2 class="title">ETC</h2>
-      <p class="copy">Seriously, straight up, just blast off into outer space today</p>
-      <a href="/usr/article/list?boardId=4" class="btn">Book Now</a>
+      <p class="copy">기타등등 여러가지 타투장르</p>
+      <a href="/usr/article/list?boardId=4" class="btn">Go</a>
     </div>
   </div>
 </main>
