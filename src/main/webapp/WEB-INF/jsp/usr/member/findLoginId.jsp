@@ -3,26 +3,25 @@
 <c:set var="pageTitle" value="Find LoginId" />
 <%@ include file="../common/head.jspf"%>
 <hr />
-
 <script type="text/javascript">
-	let MemberFindLoginId__submitFormDone = false;
-	function MemberFindLoginId__submit(form) {
-		if (MemberFindLoginId__submitFormDone) {
+	let MemberFindLoginPw__submitFormDone = false;
+	function MemberFindLoginPw__submit(form) {
+		if (MemberFindLoginPw__submitFormDone) {
 			return;
 		}
-		form.name.value = form.name.value.trim();
+		form.loginId.value = form.loginId.value.trim();
 		form.email.value = form.email.value.trim();
-		if (form.name.value.length == 0) {
-			alert('이름을 입력해주세요');
-			form.name.focus();
+		if (form.loginId.value.length == 0) {
+			alert('이름 써라');
+			form.loginId.focus();
 			return;
 		}
 		if (form.email.value.length == 0) {
-			alert('email을 입력해주세요');
+			alert('email 써라');
 			form.email.focus();
 			return;
 		}
-		MemberFindLoginId__submitFormDone = true;
+		MemberFindLoginPw__submitFormDone = true;
 		form.submit();
 	}
 </script>
@@ -32,19 +31,19 @@
 <div class="container">
 	<div class="login-box">
 		<h2>FindLoginId</h2>
-			<form action="../member/doFindLoginId" method="POST" onsubmit="MemberFindLoginId__submit(this); return false;">
-			<input type="hidden" name="afterFindLoginIdUri" value="${param.afterFindLoginIdUri }" />
+		<form action="../member/doFindLoginPw" method="POST" onsubmit="MemberFindLoginPw__submit(this); return false;">
+				<input type="hidden" name="afterFindLoginPwUri" value="${param.afterFindLoginPwUri }" />
 			<div class="user-box">
 					<input class="input input-bordered w-full max-w-xs" autocomplete="off" type="text" placeholder="이름을 입력해주세요"
-									name="name" />
-				<label>Name</label>
+									name="loginId" />
+				<label>LoginId</label>
 			</div>
 			<div class="user-box">
-			<input class="input input-bordered w-full max-w-xs" autocomplete="off" type="text" placeholder="이메일을 입력해주세요"
+				<input class="input input-bordered w-full max-w-xs" autocomplete="off" type="text" placeholder="이메일을 입력해주세요"
 									name="email" />
 				<label>Email</label>
 			</div>
-			<button type="submit">아이디 찾기</button>
+			<button type="submit">비밀번호 찾기</button>
 				 
 		</form>
 	</div>
