@@ -27,101 +27,77 @@
 				</form>
 			</div>
 		<div class="table-wrapper">
-    <c:choose>
-        <c:when test="${boardId >= 1 && boardId <= 4}">
-       <!-- 그리드 형식 -->
-<div class="grid grid-cols-3 gap-4">
-    <c:forEach var="article" items="${articles}">
-        <div class="grid-item">
-            <div class="badge">${article.id}</div>
-     <div class="image-preview">
-    <img src="${rq.getImgUri(article.id)}" onerror="${rq.profileFallbackImgOnErrorHtml}" alt="" />
-</div>
-            <div class="back">
-                <div>
-                    <c:choose>
-                        <c:when test="${article.boardId eq 5}">
-                            <c:choose>
-                                <c:when test="${rq.getLoginedMemberId() == article.memberId}">
+   <c:choose>
+    <c:when test="${boardId >= 1 && boardId <= 4}">
+        <!-- 그리드 형식 -->
+        <div class="grid grid-cols-3 gap-4">
+            <c:forEach var="article" items="${articles}">
+                <div class="grid-item">
+                    <div class="badge">${article.id}</div>
+                    <div class="image-preview">
+                        <img src="${rq.getImgUri(article.id)}" onerror="${rq.profileFallbackImgOnErrorHtml}" alt="" />
+                    </div>
+                    <div class="back">
+                        <div>
+                       
                                     <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
-                                </c:when>
-                                <c:otherwise>
-                                    <a class="hover:underline" href="javascript:void(0)" onclick="showAlert()">${article.title}</a>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:when>
-                        <c:otherwise>
-                            <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
-                        </c:otherwise>
-                    </c:choose>
+                               
+                        </div>
+                        <div>작성자: ${article.extra__writer}</div>
+                        <div>조회수: ${article.hitCount}</div>
+                        <div>찜: ${article.likePoint}</div>
+                        <div>작성날짜: ${article.regDate.substring(2, 16)}</div>
+                    </div>
                 </div>
-                <div>작성자: ${article.extra__writer}</div>
-                <div>조회수: ${article.hitCount}</div>
-                <div>찜: ${article.likePoint}</div>
-                <div>작성날짜: ${article.regDate.substring(2, 16)}</div>
-            </div>
+            </c:forEach>
         </div>
-    </c:forEach>
-</div>
-
-        </c:when>
-        <c:otherwise>
-            <!-- 리스트 형식 -->
-            <table class="table table-zebra">
-                <colgroup>
-                    <col width="140" />
-                    <col width="140" />
-                    <col width="140" />
-                    <col width="140" />
-                    <col width="140" />
-                    <col width="140" />
-                    <col width="140" />
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>날짜</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>조회수</th>
-                        <th>좋아요</th>
-                        <th>싫어요</th>
+    </c:when>
+    <c:otherwise>
+        <!-- 리스트 형식 -->
+        <table class="table table-zebra">
+            <colgroup>
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+                <col width="140" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>날짜</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>조회수</th>
+                    <th>좋아요</th>
+                    <th>싫어요</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="article" items="${articles}">
+                    <tr class="hover">
+                        <td>
+                            <div class="badge">${article.id}</div>
+                        </td>
+                        <td>${article.regDate.substring(2, 16)}</td>
+                        <td>
+                            
+                                    <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
+                          
+                        </td>
+                        <td>${article.extra__writer}</td>
+                        <td>${article.hitCount}</td>
+                        <td>${article.goodReactionPoint}</td>
+                        <td>${article.badReactionPoint}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="article" items="${articles}">
-                        <tr class="hover">
-                            <td>
-                                <div class="badge">${article.id}</div>
-                            </td>
-                            <td>${article.regDate.substring(2,16)}</td>
-                            <td>
-                                <c:choose>
-                                    <c:when test="${article.boardId eq 5}">
-                                        <c:choose>
-                                            <c:when test="${rq.getLoginedMemberId() == article.memberId}">
-                                                <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <a class="hover:underline" href="javascript:void(0)" onclick="showAlert()">${article.title}</a>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <a class="hover:underline" href="${rq.getArticleDetailUriFromArticleList(article)}">${article.title}</a>
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
-                            <td>${article.extra__writer}</td>
-                            <td>${article.hitCount}</td>
-                            <td>${article.goodReactionPoint}</td>
-                            <td>${article.badReactionPoint}</td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </c:otherwise>
-    </c:choose>
+                </c:forEach>
+            </tbody>
+        </table>
+    </c:otherwise>
+</c:choose>
+
 </div>
 
 		</div>
@@ -263,10 +239,5 @@ margin-top: 300px;
 		background-color: rgba(255, 255, 255, 0.5); 
  }
 </style>
- <script>
- function showAlert() {
-	    alert("게시물을 볼 수 있는 권한이 없습니다.");
-	  }
  
-</script>
 <%@ include file="../common/foot.jspf"%>

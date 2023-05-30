@@ -57,7 +57,7 @@ public class Rq {
 		this.loginedMember = loginedMember;
 
 		this.req.setAttribute("rq", this);
-
+	 
 		String requestUri = req.getRequestURI();
 
 		boolean isAjax = requestUri.endsWith("Ajax");

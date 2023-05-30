@@ -313,7 +313,8 @@ input[type="text"], textarea {
 								<td class="table-cell">
 
 
-
+<c:choose>
+    <c:when test="${actorCanMakeLike and rq.isLogined()}">
 									<div class="btn_box">
 										<button id="likeButton" class="btn btn-ghost" " type="button" onclick="doGoodReaction(${param.id})">
 											좋아요 👍
@@ -325,6 +326,8 @@ input[type="text"], textarea {
 											<span id="DislikeCount">${article.badReactionPoint}</span>
 										</button>
 									</div>
+									 </c:when>
+									 </c:choose>
 						</c:if>
 					 
 						<c:if test="${article.boardId eq 1 || article.boardId eq 2 || article.boardId eq 3 || article.boardId eq 4}">
@@ -333,7 +336,7 @@ input[type="text"], textarea {
 								<td class="table-cell">
 								 
 <c:choose>
-    <c:when test="${actorCanMakeLike}">
+    <c:when test="${actorCanMakeLike and rq.isLogined()}">
         <div>
             <button id="loveButton" class="btn btn-outline" type="button" onclick="doLikePoint(${param.id})">
                 ❤
@@ -342,14 +345,10 @@ input[type="text"], textarea {
         </div>
     </c:when>
     <c:otherwise>
-        <div>
-            <button id="loveButton" class="btn btn-danger" type="button" onclick="doLikePoint(${param.id})">
-                ❤
-                <span id="loveCount">${article.likePoint}</span>
-            </button>
-        </div>
+        <!-- Do nothing or display an alternative content -->
     </c:otherwise>
 </c:choose>
+
 
 						</c:if>
 					<tr>
@@ -413,7 +412,7 @@ input[type="text"], textarea {
 			</c:if>
 			
 			<c:if test="${rq.notLogined }">
-				<a class="btn-text-link btn btn-active btn-ghost" href="${rq.loginUri }">로그인</a> 하고 해라
+				<a class="btn-text-link btn btn-active btn-ghost" href="${rq.loginUri }">로그인</a> 후 이용해주세요
 			</c:if>
 			
 		</div>
